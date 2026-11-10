@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"primary-fixed":"#eaddff","outline":"#7b7487","error-container":"#ffdad6","on-primary":"#ffffff","surface-container-highest":"#dae2fd","on-primary-fixed":"#25005a","background":"#faf8ff","primary-container":"#7c3aed","surface-container":"#eaedff","inverse-on-surface":"#eef0ff","surface-container-low":"#f2f3ff","secondary":"#ae2f34","tertiary-fixed-dim":"#4cd7f6","tertiary":"#005766","outline-variant":"#ccc3d8","on-secondary-fixed-variant":"#8c1520","surface-tint":"#732ee4","secondary-container":"#ff6b6b","surface-bright":"#faf8ff","surface":"#faf8ff","secondary-fixed":"#ffdad8","error":"#ba1a1a","tertiary-container":"#007184","inverse-surface":"#283044","primary":"#630ed4","on-background":"#131b2e","on-secondary-container":"#6d0010","surface-container-high":"#e2e7ff","tertiary-fixed":"#acedff","on-secondary":"#ffffff","surface-dim":"#d2d9f4","on-surface":"#131b2e","on-tertiary-container":"#b7efff","on-primary-container":"#ede0ff","on-tertiary-fixed":"#001f26","surface-container-lowest":"#ffffff","primary-fixed-dim":"#d2bbff","on-primary-fixed-variant":"#5a00c6","on-tertiary-fixed-variant":"#004e5c","on-secondary-fixed":"#410006","inverse-primary":"#d2bbff","secondary-fixed-dim":"#ffb3b0","on-surface-variant":"#4a4455","on-error":"#ffffff","on-error-container":"#93000a","surface-variant":"#dae2fd","on-tertiary":"#ffffff"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"space-md":"1rem","space-lg":"1.5rem","space-xl":"2rem","margin":"1rem","space-sm":"0.5rem","gutter":"1rem","space-xs":"0.25rem"},"fontFamily":{"title-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"]},"fontSize":{"title-md":["16px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"30px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-md":["13px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-xl-mobile":["28px",{"lineHeight":"34px","letterSpacing":"-0.025em","fontWeight":"800"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"700"}]}}}};</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#faf8ff;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-shrink-0"><img alt="Weekendr Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDIk1QCpsdPwCpVeXOgFrevD1j07sirWtrcPQvD6swQI-TNF_hThI145Q0Q1pdF2qhl6nrnZnQz4rQA_MnhsmVpO4jIkvTrL2xLOkEANChIKPOH8Tg9_sq3kDKpSs5oN9PiUn1o6C6r-3uENjiLthtNCn0zzKytKGiCcesKTam2LG-IwGiMcd1LkN5eO2SRlT7cI_pSdrXAxyqydvfwyDqWUm5ZWEYIdZqsDw5Qg5--"/><span class="font-headline-sm text-headline-sm text-primary tracking-tight hidden xs:inline">Weekendr</span></div><button aria-label="City Selector" class="flex-1 max-w-[150px] sm:max-w-[180px] h-10 px-space-sm bg-surface-container-low rounded-full flex items-center justify-center gap-space-xs text-on-surface-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-primary text-[18px]">location_on</span><span class="font-label-md text-label-md truncate text-on-surface">New York, NY</span><span class="material-symbols-outlined text-outline text-[16px]">expand_more</span></button><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors relative"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface"></span></button><button aria-label="User Profile" class="w-11 h-11 flex items-center justify-center rounded-full hover:ring-2 hover:ring-primary/30 transition-all"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBruRsfgDQs9j29BRLErZqJMIfq1_tpBG74OeO3LRIqldGuGQZjROaGaDn2Fr15ULZxGe3JeppuhFxXh_yU2nEM_fGH6db1qITe1Voy5zWZ22-x6JNdz6H9o2jQjG0HqQCBpOiNWyTOKRljIQQDTwbHi4M4cV4I9V0amKp5RUobQxOQXn1TsSx_BIBH1bIC_miHvRntpXyqaDFLNmwnyMWIHCdIs43Uo1HT7cinG-I9"/></button></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-8">
+<!-- Weekend Day Selector Section -->
+<section class="px-margin pt-4 pb-2">
+<div class="flex items-center justify-between mb-3">
+<div>
+<p class="font-label-sm text-label-sm text-primary uppercase tracking-wider mb-0.5">London Happening Now</p>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight">This Weekend</h1>
+</div>
+<button aria-label="Filter city" class="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full text-on-surface hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">near_me</span>
+<span class="font-label-md text-label-md">London</span>
+<span class="material-symbols-outlined text-outline text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Day Pills -->
+<div class="grid grid-cols-3 gap-2.5">
+<!-- Fri Oct 24 -->
+<button class="flex flex-col items-center justify-center py-2.5 px-2 rounded-2xl bg-surface-container-lowest shadow-sm text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-[0.98]">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Fri</span>
+<span class="font-title-md text-title-md text-on-surface font-bold mt-0.5">Oct 24</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">18 Events</span>
+</button>
+<!-- Sat Oct 25 (Active) -->
+<button class="relative flex flex-col items-center justify-center py-2.5 px-2 rounded-2xl bg-primary-container text-on-primary shadow-lg shadow-primary-container/25 transition-all transform scale-[1.02] active:scale-[0.98]">
+<div class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-secondary-container flex items-center justify-center ring-2 ring-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-surface"></span>
+</div>
+<span class="font-label-sm text-label-sm text-on-primary-container uppercase tracking-wider">Sat</span>
+<span class="font-title-md text-title-md text-on-primary font-bold mt-0.5">Oct 25</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-[10px] text-on-primary font-semibold">Peak Vibes</span>
+</div>
+</button>
+<!-- Sun Oct 26 -->
+<button class="flex flex-col items-center justify-center py-2.5 px-2 rounded-2xl bg-surface-container-lowest shadow-sm text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-[0.98]">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Sun</span>
+<span class="font-title-md text-title-md text-on-surface font-bold mt-0.5">Oct 26</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">24 Events</span>
+</button>
+</div>
+</section>
+<!-- Category Horizontal Chips Carousel -->
+<section class="mt-2 mb-4">
+<div class="flex items-center gap-2 overflow-x-auto px-margin no-scrollbar py-1">
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-on-background text-on-primary font-label-md text-label-md shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+<span>⚡</span><span>All</span>
+</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5">
+<span>🎵</span><span>Music</span>
+</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5">
+<span>⚽</span><span>Sports</span>
+</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5">
+<span>🎨</span><span>Arts</span>
+</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5">
+<span>🤝</span><span>Volunteer</span>
+</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5">
+<span>🎟️</span><span>Free</span>
+</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5">
+<span>🍔</span><span>Food &amp; Markets</span>
+</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5">
+<span>💡</span><span>Workshops</span>
+</button>
+</div>
+</section>
+<!-- Feed Section -->
+<section class="px-margin flex flex-col gap-4">
+<!-- Quick Social Proof Banner -->
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">group</span>
+<p class="font-body-md text-body-md text-on-surface"><span class="font-bold text-primary">312 peers</span> active nearby tonight</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Trending</span>
+</div>
+<!-- CARD 1: Featured Hero - Warehouse Indie & Electronic Night -->
+<article class="bg-surface-container-lowest rounded-2xl p-3 shadow-md flex flex-col gap-3 group relative transition-transform active:scale-[0.99]">
+<div class="relative w-full h-52 rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Energetic youth indie music concert inside a converted industrial London warehouse with purple and neon magenta stage lighting, crowd dancing with raised hands, cinematic haze, vibrant young adult crowd atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuvFzkr2owLVW9PwiQC09HFaENHFR0pog4T-MtkOtT7GAt7nG0o9_-es6JhOQLF-x0dww_nWotzdCZbWaiVnYnEWWUNpTK1685Yomlncc91jqDA3-a-_E_Q0ICgG2MzWBBOLRqPB_PvhIPfwt48floxDjA3AvUuDCORZjLJNy9r9mMLaoG5z_sasB_qmADT_nOM35W5-FbGeGtEqLiP-XSELBB9wP8C7DxxiFqDsu0"/>
+<!-- Gradient Scrim for Readability -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-black/30"></div>
+<!-- Badges Overlay -->
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 items-center">
+<span class="bg-inverse-surface/90 backdrop-blur-md text-inverse-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1">
+<span>🎵</span> Music
+          </span>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold px-2.5 py-1 rounded-full shadow-sm">
+            £12
+          </span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">verified</span> Featured
+          </span>
+</div>
+<!-- Heart Save Button -->
+<button aria-label="Save Warehouse Indie Night" class="absolute top-2.5 right-2.5 w-9 h-9 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary-container hover:bg-surface-container-lowest transition-all shadow-sm" onclick="event.stopPropagation(); this.classList.toggle('text-secondary-container');">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<!-- Distance & Time Tag on Image -->
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-inverse-on-surface">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px] text-tertiary-fixed-dim">schedule</span>
+<span>Sat 9:00 PM</span>
+<span class="text-outline-variant">•</span>
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">place</span>
+<span>0.8 mi away</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold bg-secondary-container/90 text-on-secondary-container px-2 py-0.5 rounded-full">85% Sold</span>
+</div>
+</div>
+<!-- Card Content -->
+<div class="flex flex-col gap-2 pt-0.5">
+<div class="flex items-start justify-between gap-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Warehouse Indie &amp; Electronic Night</h2>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">SubGround Sound</span>
+<span class="material-symbols-outlined text-primary text-[15px]">verified</span>
+<span class="text-outline text-label-sm">• E1 London</span>
+</div>
+</div>
+</div>
+<!-- Attendees & CTA Row -->
+<div class="flex items-center justify-between pt-2 mt-1">
+<!-- Avatar Stack -->
+<div class="flex items-center">
+<div class="flex -space-x-2 overflow-hidden">
+<img class="inline-block h-7 w-7 rounded-full object-cover" data-alt="Portrait of a smiling young woman with curly brown hair in casual streetwear against soft neon bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFltAYICcBOzSGhjYITN7grOfhKyezCQY4Nlt8sBem04ZvjUbNGLKXvCNcA4mRYdduvpzIEJMHiuT8pQaS8pB_qv1zZnUBDKcJLRb2_QhsVHz55iu0J5StfxCGGOv0ngIUhENDvNQh8i3fuyFqc-c5j25NH_F8Ue2SJIFP2z01MrkFHlFyWt7kWKRbJkOgyQObolkfQm5tjQKxsW9bsV16ap8cDM-smhSFzVZjIEQn"/>
+<img class="inline-block h-7 w-7 rounded-full object-cover" data-alt="Portrait of a stylish young guy with vintage glasses and beanie in warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmdmNMb95sUbnl29qdnOQGohxTpLWwL9O1WSryCPeGFflZ8Gnxd9TZoJ9FYpvPPVIy_hgS0_6bCv14RSgnooohQ9vOIMx9AsBw7S2XB6ZvIv6lH5sU1GLZ578ZTgtFP8-fzJwZoP9tEZP9Mkcwt3GssMjss_GMVwMScWqcE2p9f5tTtJ97AIEsXhI0dloaCmgpnQfw-lXXsg0K9EwcpQiSCuZc6smigbJc7u-9CNMk"/>
+<img class="inline-block h-7 w-7 rounded-full object-cover" data-alt="Portrait of a laughing girl with braided hair and colorful jacket at an evening social event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTqcS1ysG8a3_M1KQ8mHBVohmQOIzYDdHqcwGpC-f-0smPDhraX7UGAECQax6cg0rM14HE7NBQivMP2RDIZUu1lYAqko1AnyJ5yAAALBgxLeLAxQ4JZ0LslEnSklnJ9pQ9T2naeag0EUrqJJqQ_IDQqfltejZ6HEH4hWeO-MuSdogLCy7e_wI7S-cAOFAm502boL6gVwiQ6Pvo3cy1gU2exI2_WMp9nJ7XFAhruiXp"/>
+</div>
+<span class="ml-2 font-label-sm text-label-sm text-on-surface-variant font-semibold">142 youth going</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-container transition-colors shadow-sm active:scale-95">
+            Grab Ticket
+          </button>
+</div>
+</div>
+</article>
+<!-- CARD 2: Sunset 3v3 Street Basketball Tournament -->
+<article class="bg-surface-container-lowest rounded-2xl p-3 shadow-md flex flex-col gap-3 group relative transition-transform active:scale-[0.99]">
+<div class="relative w-full h-44 rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Vibrant outdoor urban basketball court at sunset in London with teens playing high-energy 3v3 basketball match under golden orange sunlight with city buildings in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn3T7KDlAfvniF_UEsUw8XRTC05RkuB1DYlbRA3GIZej09FBhdNHBELRYsjmhDHE4gkORmfIO-D0xvs7OBJl7s5JFULiWfkD5zrGox9uYeUHwEVf4uVDaUVeldlMpLtkNKg_uA9iD9Ea2ALJjimhkLIzBZAPwcQF_sfPZYuj4Zxk1EM_0bmnCBTcAw3pnTzpnFQ0uAzrQ3wDPITz-TBbjYjzfq7GW9CCe0y9dpURMN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-black/30"></div>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 items-center">
+<span class="bg-inverse-surface/90 backdrop-blur-md text-inverse-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1">
+<span>⚽</span> Sports
+          </span>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold px-2.5 py-1 rounded-full">
+            FREE ENTRY
+          </span>
+<span class="bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-semibold px-2 py-0.5 rounded-full">
+            Ages 16–22
+          </span>
+</div>
+<button aria-label="Save Basketball Tournament" class="absolute top-2.5 right-2.5 w-9 h-9 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary-container hover:bg-surface-container-lowest transition-all shadow-sm" onclick="event.stopPropagation(); this.classList.toggle('text-secondary-container');">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-inverse-on-surface">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px] text-tertiary-fixed-dim">schedule</span>
+<span>Sat 2:00 PM</span>
+<span class="text-outline-variant">•</span>
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">place</span>
+<span>1.4 mi away</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high/90 text-on-surface px-2 py-0.5 rounded-full font-medium">Open Squads</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-0.5">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Sunset 3v3 Street Basketball Tournament</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Showcase your squad or join solo. DJ set, hydration station &amp; prizes.</p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary-fixed text-primary font-bold text-[11px]">🏀</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">86 ballers registered</span>
+</div>
+<button class="bg-surface-container-high text-on-surface font-label-md text-label-md px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95 font-semibold">
+            RSVP Free
+          </button>
+</div>
+</div>
+</article>
+<!-- CARD 3: Canal Clean-Up & Pizza Picnic -->
+<article class="bg-surface-container-lowest rounded-2xl p-3 shadow-md flex flex-col gap-3 group relative transition-transform active:scale-[0.99]">
+<div class="relative w-full h-44 rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A group of diverse enthusiastic young volunteers smiling together by a sunlit urban water canal in London holding reusable trash grabbers and craft pizza boxes on a picnic mat, friendly and wholesome atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-p0jfy722Hz6L02eQ6PT1fmky6hzRPeiYUA0vR7l34JMnDJXRNucpvUvr3b8u0-8jMB5ulejSvZBVxRvs4lrm6Dw3LrNKu2LFu9KxpGP_5Oq14OuhsvI4RicEkSKZI1Z8gtGtRcXrYpc2_p8fqDs3eJQ9NM-ur1xM5k467yPMallJ-kKJ7EX5Z9OujHkzV5xzKN4ktpEuO9V28CaI52QsxGUMd-3qFqhLo7nBT-Ca"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-black/30"></div>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 items-center">
+<span class="bg-inverse-surface/90 backdrop-blur-md text-inverse-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1">
+<span>🤝</span> Volunteer
+          </span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold px-2.5 py-1 rounded-full">
+            Free + Lunch Included
+          </span>
+</div>
+<button aria-label="Save Canal Clean-up" class="absolute top-2.5 right-2.5 w-9 h-9 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary-container hover:bg-surface-container-lowest transition-all shadow-sm" onclick="event.stopPropagation(); this.classList.toggle('text-secondary-container');">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-inverse-on-surface">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px] text-tertiary-fixed-dim">schedule</span>
+<span>Sat 11:00 AM</span>
+<span class="text-outline-variant">•</span>
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">place</span>
+<span>2.1 mi away</span>
+</div>
+<span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded-full font-medium">Free Slices 🍕</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-0.5">
+<div>
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="font-label-sm text-label-sm text-primary font-bold">GreenRoots Youth</span>
+<span class="material-symbols-outlined text-primary text-[14px]">eco</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Canal Clean-Up &amp; Pizza Picnic</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Protect Hackney's water birds, pick litter with new mates, then demolish sourdough wood-fired pizza.</p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[18px]">volunteer_activism</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">45 volunteers going</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-container transition-colors active:scale-95 font-semibold">
+            Join In
+          </button>
+</div>
+</div>
+</article>
+<!-- CARD 4: Analog Film Photography & Zine Workshop -->
+<article class="bg-surface-container-lowest rounded-2xl p-3 shadow-md flex flex-col gap-3 group relative transition-transform active:scale-[0.99]">
+<div class="relative w-full h-44 rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Hands of creative young art students cutting indie prints and assembling an aesthetic DIY collage zine around vintage 35mm cameras, warm ambient natural light in a London community art studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhIrFlAEv5_XoIaNHyhdLDChVBzs-jsUZNyepFx27PxMYU52_8GSHUCDIaiiaOOO6S5sYwpcZCXTlxVqVZyij4Dx3z5dKn2LQwytrfYbClLNBlX06I8mQ-6VB-4lC0FqZcXe3OJQeeDYpHz6RAI4OVGuc6m8NxeXqBhQ7_PtK2pUa5ei6qPWZV5W5KAmsFP3dX6KcL03vchu9_vTAasPKsokbYVBEYIcH9Qx6yf7ri"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-black/30"></div>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 items-center">
+<span class="bg-inverse-surface/90 backdrop-blur-md text-inverse-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1">
+<span>🎨</span> Arts
+          </span>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold px-2.5 py-1 rounded-full shadow-sm">
+            £8
+          </span>
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm font-bold px-2 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> 4 spots left
+          </span>
+</div>
+<button aria-label="Save Photography Workshop" class="absolute top-2.5 right-2.5 w-9 h-9 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary-container hover:bg-surface-container-lowest transition-all shadow-sm" onclick="event.stopPropagation(); this.classList.toggle('text-secondary-container');">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-inverse-on-surface">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px] text-tertiary-fixed-dim">schedule</span>
+<span>Sat 3:30 PM</span>
+<span class="text-outline-variant">•</span>
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">place</span>
+<span>0.5 mi away</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high/90 text-on-surface px-2 py-0.5 rounded-full font-medium">Darkroom Lab</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-0.5">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Analog Film Photography &amp; Zine Workshop</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Bring your prints or negatives. Free paper stock, photocopiers &amp; riso color drums included.</p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[18px]">photo_camera</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">24 going · <span class="text-error font-bold">Almost full</span></span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-container transition-colors active:scale-95 font-semibold">
+            Book £8
+          </button>
+</div>
+</div>
+</article>
+</section>
+<!-- Interactive Feed Footer / Discovery Sparkle -->
+<section class="mt-6 px-margin text-center">
+<div class="p-4 rounded-2xl bg-surface-container-low flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">auto_awesome</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">That's your live Saturday preview!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">New youth-organized pop-ups and student gigs are verified every 30 minutes.</p>
+<button class="mt-1 px-5 py-2.5 rounded-full bg-surface-container-highest text-primary font-label-md text-label-md font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+        Check Sunday Lineup
+      </button>
+</div>
+</section>
+</div>
+<script>
+  // Simple category chip toggle micro-interaction
+  document.querySelectorAll('section:nth-of-type(2) button').forEach(chip => {
+    chip.addEventListener('click', function() {
+      document.querySelectorAll('section:nth-of-type(2) button').forEach(b => {
+        b.className = 'flex-shrink-0 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center gap-1.5';
+      });
+      this.className = 'flex-shrink-0 px-4 py-2 rounded-full bg-on-background text-on-primary font-label-md text-label-md shadow-sm active:scale-95 transition-all flex items-center gap-1.5';
+    });
+  });
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 transition-colors group text-primary-container font-semibold" data-path="home" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">local_activity</span></div><span class="font-label-sm text-label-sm tracking-tight">Home</span></a><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors group" data-path="search" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">search</span></div><span class="font-label-sm text-label-sm tracking-tight">Search</span></a><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors group" data-path="my-weekend" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">calendar_month</span></div><span class="font-label-sm text-label-sm tracking-tight">My Weekend</span></a><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors group" data-path="profile" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">person</span></div><span class="font-label-sm text-label-sm tracking-tight">Profile</span></a></div></nav></body></html>

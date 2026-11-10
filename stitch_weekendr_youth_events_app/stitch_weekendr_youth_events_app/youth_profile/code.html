@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"primary-fixed":"#eaddff","outline":"#7b7487","error-container":"#ffdad6","on-primary":"#ffffff","surface-container-highest":"#dae2fd","on-primary-fixed":"#25005a","background":"#faf8ff","primary-container":"#7c3aed","surface-container":"#eaedff","inverse-on-surface":"#eef0ff","surface-container-low":"#f2f3ff","secondary":"#ae2f34","tertiary-fixed-dim":"#4cd7f6","tertiary":"#005766","outline-variant":"#ccc3d8","on-secondary-fixed-variant":"#8c1520","surface-tint":"#732ee4","secondary-container":"#ff6b6b","surface-bright":"#faf8ff","surface":"#faf8ff","secondary-fixed":"#ffdad8","error":"#ba1a1a","tertiary-container":"#007184","inverse-surface":"#283044","primary":"#630ed4","on-background":"#131b2e","on-secondary-container":"#6d0010","surface-container-high":"#e2e7ff","tertiary-fixed":"#acedff","on-secondary":"#ffffff","surface-dim":"#d2d9f4","on-surface":"#131b2e","on-tertiary-container":"#b7efff","on-primary-container":"#ede0ff","on-tertiary-fixed":"#001f26","surface-container-lowest":"#ffffff","primary-fixed-dim":"#d2bbff","on-primary-fixed-variant":"#5a00c6","on-tertiary-fixed-variant":"#004e5c","on-secondary-fixed":"#410006","inverse-primary":"#d2bbff","secondary-fixed-dim":"#ffb3b0","on-surface-variant":"#4a4455","on-error":"#ffffff","on-error-container":"#93000a","surface-variant":"#dae2fd","on-tertiary":"#ffffff"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"space-md":"1rem","space-lg":"1.5rem","space-xl":"2rem","margin":"1rem","space-sm":"0.5rem","gutter":"1rem","space-xs":"0.25rem"},"fontFamily":{"title-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"]},"fontSize":{"title-md":["16px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"30px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-md":["13px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-xl-mobile":["28px",{"lineHeight":"34px","letterSpacing":"-0.025em","fontWeight":"800"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"700"}]}}}};</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#faf8ff;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-shrink-0"><img alt="Weekendr Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDIk1QCpsdPwCpVeXOgFrevD1j07sirWtrcPQvD6swQI-TNF_hThI145Q0Q1pdF2qhl6nrnZnQz4rQA_MnhsmVpO4jIkvTrL2xLOkEANChIKPOH8Tg9_sq3kDKpSs5oN9PiUn1o6C6r-3uENjiLthtNCn0zzKytKGiCcesKTam2LG-IwGiMcd1LkN5eO2SRlT7cI_pSdrXAxyqydvfwyDqWUm5ZWEYIdZqsDw5Qg5--"/><span class="font-headline-sm text-headline-sm text-primary tracking-tight hidden xs:inline">Weekendr</span></div><button aria-label="City Selector" class="flex-1 max-w-[150px] sm:max-w-[180px] h-10 px-space-sm bg-surface-container-low rounded-full flex items-center justify-center gap-space-xs text-on-surface-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-primary text-[18px]">location_on</span><span class="font-label-md text-label-md truncate text-on-surface">New York, NY</span><span class="material-symbols-outlined text-outline text-[16px]">expand_more</span></button><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors relative"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface"></span></button><button aria-label="User Profile" class="w-11 h-11 flex items-center justify-center rounded-full hover:ring-2 hover:ring-primary/30 transition-all"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBruRsfgDQs9j29BRLErZqJMIfq1_tpBG74OeO3LRIqldGuGQZjROaGaDn2Fr15ULZxGe3JeppuhFxXh_yU2nEM_fGH6db1qITe1Voy5zWZ22-x6JNdz6H9o2jQjG0HqQCBpOiNWyTOKRljIQQDTwbHi4M4cV4I9V0amKp5RUobQxOQXn1TsSx_BIBH1bIC_miHvRntpXyqaDFLNmwnyMWIHCdIs43Uo1HT7cinG-I9"/></button></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-8">
+<!-- Profile Header Hero Card -->
+<div class="px-margin pt-4 pb-2">
+<div class="relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm overflow-hidden">
+<!-- Decorative kinetic ambient gradient blob -->
+<div class="absolute -right-8 -top-8 w-36 h-36 bg-gradient-to-br from-primary-fixed via-surface-container-highest to-transparent rounded-full blur-2xl opacity-70 pointer-events-none"></div>
+<div class="relative flex items-start gap-space-md">
+<!-- Avatar with active streak ring -->
+<div class="relative flex-shrink-0">
+<div class="w-20 h-20 rounded-full overflow-hidden shadow-md bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A stylish 20-year-old Gen Z youth with warm smile, casual trendy streetwear, natural outdoor urban daylight in London, vibrant energetic aesthetic with clean tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnyM27vyI6dR5I5qqRzHV-fUVdsHS5svIOK2hFu9l2KeHZaG56pn3PHHe0cvCOHdbxbg4kx49DWq9JuRe2XTydos7C_W-H7KDk26EkpKIDPerflO-lV5Gq_JrRocoUUONdms_bS8QMRTnGFnsJX1SN_CvTr00qvTioZkQODguxxI8zlZ8KxNslnlgcKvFuBWeJi667ydtEtWLwYnSzDfZUx9a3t8vbo8wIvOLkz7d8"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-surface-container-lowest p-0.5 rounded-full shadow-sm">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary text-on-primary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+</div>
+</div>
+<!-- Identity Meta -->
+<div class="flex-1 min-w-0 pt-0.5">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Alex Rivera</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">20 yrs old</span>
+</div>
+<p class="font-body-md text-body-md text-outline">@alexr_weekends</p>
+<div class="mt-2 flex items-center gap-2 flex-wrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-low font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[15px]">location_on</span>
+              East London
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed font-label-md text-label-md text-on-primary-fixed">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+              Youth Explorer
+            </span>
+</div>
+</div>
+</div>
+<!-- Mode Switcher Bar -->
+<div class="mt-4 pt-3 flex items-center justify-between gap-space-sm bg-surface-container-low rounded-xl px-3.5 py-2.5">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px]">swap_horiz</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Organizer Studio</span>
+<span class="font-label-sm text-label-sm text-outline truncate">Host gigs &amp; meetups</span>
+</div>
+</div>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-transform active:scale-95 shadow-sm" id="modeSwitchBtn">
+          Switch Mode
+        </button>
+</div>
+</div>
+</div>
+<!-- Key Statistics Grid -->
+<div class="px-margin py-2">
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm">
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Stat Item 1 -->
+<div class="bg-surface-container-low rounded-xl p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">ATTENDED</span>
+<span class="material-symbols-outlined text-primary text-[18px]">celebration</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">18</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Events this year</p>
+</div>
+</div>
+<!-- Stat Item 2 -->
+<div class="bg-surface-container-low rounded-xl p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">COMMUNITY</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">volunteer_activism</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">4 hrs</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Eco volunteering</p>
+</div>
+</div>
+<!-- Stat Item 3 -->
+<div class="bg-surface-container-low rounded-xl p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">SOCIAL CIRCLE</span>
+<span class="material-symbols-outlined text-primary-container text-[18px]">group</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">32</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Friends connected</p>
+</div>
+</div>
+<!-- Stat Item 4: Streak -->
+<div class="bg-surface-container-high rounded-xl p-3 flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary">HOT STREAK</span>
+<span class="text-[18px]">🔥</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">4 wks</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Non-stop weekends</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 1: Interests & Vibes -->
+<div class="px-margin pt-4 pb-2">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_awesome</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Interests &amp; Vibes</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">6 Active</span>
+</div>
+<div class="flex flex-wrap gap-2" id="interestsContainer">
+<button class="interest-pill px-3.5 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-active="true">
+<span>Live Indie</span>
+<span class="text-[15px]">🎸</span>
+</button>
+<button class="interest-pill px-3.5 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-active="true">
+<span>Street Basketball</span>
+<span class="text-[15px]">🏀</span>
+</button>
+<button class="interest-pill px-3.5 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-active="true">
+<span>Eco Volunteering</span>
+<span class="text-[15px]">🌱</span>
+</button>
+<button class="interest-pill px-3.5 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-active="true">
+<span>Vintage Markets</span>
+<span class="text-[15px]">🧥</span>
+</button>
+<button class="interest-pill px-3.5 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-active="true">
+<span>Photography</span>
+<span class="text-[15px]">📷</span>
+</button>
+<button class="interest-pill px-3.5 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-active="true">
+<span>Board Games</span>
+<span class="text-[15px]">🎲</span>
+</button>
+<button class="px-3.5 py-2 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md shadow-sm hover:opacity-90 transition-transform active:scale-95 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add interest</span>
+</button>
+</div>
+</div>
+<!-- Section 2: Friends on Weekendr -->
+<div class="pt-5 pb-2">
+<div class="px-margin flex items-center justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Friends on Weekendr</h2>
+<p class="font-label-sm text-label-sm text-outline">People you frequently explore with</p>
+</div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+<span>Find Contacts</span>
+</button>
+</div>
+<!-- Friends Horizontal Snap Row -->
+<div class="flex gap-3 overflow-x-auto px-margin py-1 no-scrollbar">
+<!-- Friend 1 -->
+<div class="flex-shrink-0 w-28 bg-surface-container-lowest rounded-xl p-3 flex flex-col items-center text-center shadow-sm">
+<div class="w-13 h-13 w-12 h-12 rounded-full overflow-hidden bg-surface-container mb-2">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of Liam S., a smiling 21-year-old student with headphones around his neck, cinematic warm street cafe lighting, trendy casual portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoYtKJuFIHMSI5k05DnwKbPWypM4RayMeEODO2doYNbM3tFQM5YLEj79L0vX6j5gukY6se24pJDx1RqV0Zl2UpSh9Zo0eXVXlD-4fK2RmtGKh_PJ6-g5-GHKCg5BgF-L7h_DK9yf_cP_u-I7YZewBsOFkaSXUlyD_ngwhzorkFE0vgx5Wy0ynasxthY1kAv_QB-FxW4kf57znbqS78FZEdxB3KeeHigs7v5MwcdYxD"/>
+</div>
+<span class="font-title-md text-title-md text-on-surface truncate w-full">Liam S.</span>
+<span class="font-label-sm text-label-sm text-primary mt-0.5 truncate w-full">7 shared gigs</span>
+</div>
+<!-- Friend 2 -->
+<div class="flex-shrink-0 w-28 bg-surface-container-lowest rounded-xl p-3 flex flex-col items-center text-center shadow-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container mb-2">
+<img class="w-full h-full object-cover" data-alt="Portrait of Maya T., creative girl with natural wavy hair and colorful thrifted outfit, bright outdoor park daylight, candid friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMBE4-r-sdLbPNcrRbVJDzIWtB3Co7cJpmjsp3y91OVa5MnC6dFofuP_7sQF9itq3Sz3K8SThNIVX4WkFVSAYwrcVvOro4Cfxf2SrkdhIOi6BtkRXPOyKqi5ofC3qM1PPdCcsIochRzVmPkXweti2BhKn2u3XjWi_ISoUn6g4oqbb84MGVBiF__yMZDftzsgGXgnArVnblvcOAeo4Zqt4_Pj2glxPBULKpZBb0FxUU"/>
+</div>
+<span class="font-title-md text-title-md text-on-surface truncate w-full">Maya T.</span>
+<span class="font-label-sm text-label-sm text-primary mt-0.5 truncate w-full">5 shared gigs</span>
+</div>
+<!-- Friend 3 -->
+<div class="flex-shrink-0 w-28 bg-surface-container-lowest rounded-xl p-3 flex flex-col items-center text-center shadow-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container mb-2">
+<img class="w-full h-full object-cover" data-alt="Portrait of Chloe K., smiling Gen Z woman with artistic sunglasses and neon beanie, nighttime urban festival lights background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZENl5V8CsPcj32TFSSnHxjJ5-jArbp3jbB4SYtLvneCf2jl4H-na86OQHBmleL5yxbd3Z7UZueIILZvS1iOwK5UM-eiXf0Ei9sy2q0o691Px052PT9gPvZ0oyk48fnouQOzNwPxRMjSsjCWFKX_it22PpyO6h1W3dceFgNJ3Sg3TSk7EDV8wxrtMBrPz7bQUlBuIxYrrPMTOjqmNyorT9SwIINE31m1zOOxTciDBP"/>
+</div>
+<span class="font-title-md text-title-md text-on-surface truncate w-full">Chloe K.</span>
+<span class="font-label-sm text-label-sm text-primary mt-0.5 truncate w-full">3 shared gigs</span>
+</div>
+<!-- Friend 4 -->
+<div class="flex-shrink-0 w-28 bg-surface-container-lowest rounded-xl p-3 flex flex-col items-center text-center shadow-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container mb-2">
+<img class="w-full h-full object-cover" data-alt="Portrait of Jordan P., energetic young man in athletic hoodie with cheerful smile outdoors at sunset basketball court" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGEkywAzto1EoqEfmF7QpozUPpQa58Rw6BdkXZl-CsMEXeH9Ct7fxM8Q6pp7qz84MldDL5mwdCethrWyfaGe3KrVrCulG-vendo5nHFpP4lsKFygu6wfjMlCZsWwPzFOvIi0GgkM-LbSElBLsaiSHWWZPiMYMEB0n_XRS3Va1vjNhpn6pTG8BszvOaOruRuWWZPkg-xa6sWoEA0mn-_aRwAoVHtwZOnPjzeSr416L_"/>
+</div>
+<span class="font-title-md text-title-md text-on-surface truncate w-full">Jordan P.</span>
+<span class="font-label-sm text-label-sm text-primary mt-0.5 truncate w-full">2 shared gigs</span>
+</div>
+<!-- View All Quick Pill -->
+<div class="flex-shrink-0 w-20 bg-surface-container-low rounded-xl p-3 flex flex-col items-center justify-center text-center">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary mb-1">
+<span class="material-symbols-outlined text-[20px]">east</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">+28 more</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Past Weekend Highlights -->
+<div class="pt-5 pb-2">
+<div class="px-margin flex items-center justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Past Weekend Highlights</h2>
+<p class="font-label-sm text-label-sm text-outline">Memories &amp; proof of attendance</p>
+</div>
+<button class="font-label-md text-label-md text-primary font-semibold hover:underline">View All</button>
+</div>
+<!-- Highlights Horizontal Carousel -->
+<div class="flex gap-4 overflow-x-auto px-margin py-1 no-scrollbar">
+<!-- Highlight Card 1: Indie Gig -->
+<div class="flex-shrink-0 w-72 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Vibrant indie concert crowd in warehouse venue with purple and magenta stage lighting, musicians on stage with electric guitars, confetti and warm ambient fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvS3OYm-MM4tj3MHC91Knhnjx1hwBHsvminm9v46jLccCzah2lAXJndnLl4cDMZVepamYarq91mMn-FLQFgXjK-uqpCKPPsNo8LXbsHjcMyURKINar2RjIqV2wmCk2dQzpF005N6MopTvhpc-7o5R-cExcm-m2QBopwCTIWj1hZ56jopSb78Ywz8r5iegkFWmlpzWsLwjd54XXLEaKb7f1vqeCqiEQI75X_yxZxQoN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-1.5 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-inverse-surface/90 text-inverse-on-surface font-label-sm text-label-sm">Concert</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">VIP Pit</span>
+</div>
+<div class="absolute bottom-2.5 left-3 right-3 text-on-primary">
+<span class="font-label-sm text-label-sm opacity-90">Last Saturday • Shoreditch</span>
+<h3 class="font-title-md text-title-md truncate">Neon Attic Live Session</h3>
+</div>
+</div>
+<div class="p-3.5 flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Memory Badge Minted</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Friend avatar portrait smiling girl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQkMhnsjsI8ENcWhFMCJVxo34Hgxrod13PaexfdDWM-gVB54cExZj5rcEC-NCfr4ynbQJQh_r2ItXqsK58I1CkkOug8fgyTdu4jHp0TKQ08Z0H9J1XCNP7cXkWg5iXENcYmPUvRi5jX-wbnbgz7wYMz3wkuRYXlDldyVvIF1z48OQxZTrycw8dDrMT6_MUrSOufTs7H1HMYo6VAgaiPWf6ZBNva-P-o6-H8TChvPdz"/>
+</div>
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Friend avatar portrait smiling guy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAg7_OjtSwBW4CmJqjBGygfTnmANiZV4bzLavcZCbXP0K1g6YDi1jXyNa0hP9RjqCqfAMyQq8IZhaN9cBxfLDM5d72dHJvMD_drJ12Xa9vDLvKXcxLi9OvwPzim17K8gxn6uONaQKhuDN9VaNhUq1XQYtXoqUQ3_vyLJJF-xlMfSXBrmc5LeoOnkizEfm5DfWzozDmYNAM1Mp3nDwbyvemsRxHm8RbjlyEFTvwcZ9K"/>
+</div>
+<span class="w-6 h-6 rounded-full bg-surface-container font-label-sm text-[10px] flex items-center justify-center text-outline">+4</span>
+</div>
+</div>
+</div>
+<!-- Highlight Card 2: Community Art Jam -->
+<div class="flex-shrink-0 w-72 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Youth group painting collaborative colorful graffiti mural on outdoor wall in Hackney, spray cans, candid laughter, bright sunny afternoon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMrFYaezFJ6L06CnoDzO0QHtcrLpKUO2MEESC10P8SZ9IIV0nRgfK8dLO8C_QjURw31EEOdXpKPpv2eESO93r5B0MUEbre_CM6EyVWbr5F5C4mVB7MKtpM8I47-3CWJ8QV7siPb6FSDDc-2GuWod9zX1kpge_SVNojyTPa_211-Dsb5OtI4VAhpXEUpFNSIBRegK0BUI1hn4mN3YA-p4dTsmtow89L_-qItGa1iHqT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-1.5 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-inverse-surface/90 text-inverse-on-surface font-label-sm text-label-sm">Community Art</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm font-bold">Hackney Jam</span>
+</div>
+<div class="absolute bottom-2.5 left-3 right-3 text-on-primary">
+<span class="font-label-sm text-label-sm opacity-90">2 weeks ago • Victoria Park</span>
+<h3 class="font-title-md text-title-md truncate">East London Spray Canvas</h3>
+</div>
+</div>
+<div class="p-3.5 flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[18px]">workspace_premium</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Artist Contributor</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Friend avatar smiling artist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDECaI4yMbyvEzaY5jYbqfNfrxUTZsZPnHelHMYAd_r4STCjMP7eD8kZe-D_RNaZQ263J0hZDFTvE2BhqhJ5W09VrpSn-sAfqkVwESsdGhQLP4OaOtqc1Aa6AYvwqszq39yGnSv754c7ZKy0EixSaPdtYYdz448xgxGhc4A-9UIWMnoEP89dkRDSI8jqUks1OIQjcOkWy2loeFHNawNFc_eDbkWmR-EyqK6_9SxKVXn"/>
+</div>
+<span class="w-6 h-6 rounded-full bg-surface-container font-label-sm text-[10px] flex items-center justify-center text-outline">+6</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Settings & Safety Quick Links -->
+<div class="px-margin pt-4">
+<div class="bg-surface-container-lowest rounded-2xl p-space-sm shadow-sm flex flex-col gap-1">
+<!-- Safety & Verification -->
+<a class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Safety &amp; Verification</span>
+<div class="flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-primary font-semibold">Verified Student ID</span>
+<span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">chevron_right</span>
+</a>
+<!-- Notification Preferences -->
+<a class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Notification Preferences</span>
+<span class="font-label-sm text-label-sm text-outline">Weekend drop alerts on</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">chevron_right</span>
+</a>
+<!-- Payment Methods -->
+<a class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">credit_card</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Payment Methods</span>
+<span class="font-label-sm text-label-sm text-outline">Apple Pay &amp; Student Pass</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">chevron_right</span>
+</a>
+</div>
+<!-- Quick App Info / Log Out -->
+<div class="mt-4 flex items-center justify-between px-2 text-outline">
+<span class="font-label-sm text-label-sm">Weekendr v2.4.1 (Gen Z Build)</span>
+<button class="font-label-md text-label-md text-secondary font-semibold hover:underline">Log Out</button>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for interest tag toggling
+  document.querySelectorAll('.interest-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      const isActive = this.getAttribute('data-active') === 'true';
+      if (isActive) {
+        this.setAttribute('data-active', 'false');
+        this.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+        this.classList.add('bg-surface-container-low', 'text-outline');
+      } else {
+        this.setAttribute('data-active', 'true');
+        this.classList.remove('bg-surface-container-low', 'text-outline');
+        this.classList.add('bg-surface-container-lowest', 'text-on-surface');
+      }
+    });
+  });
+
+  // Switcher toggle mock interaction
+  const modeBtn = document.getElementById('modeSwitchBtn');
+  if (modeBtn) {
+    modeBtn.addEventListener('click', function() {
+      const current = this.innerText;
+      if (current.includes('Switch')) {
+        this.innerText = 'Active Organizer';
+        this.classList.remove('bg-primary', 'text-on-primary');
+        this.classList.add('bg-surface-container-highest', 'text-primary');
+      } else {
+        this.innerText = 'Switch Mode';
+        this.classList.add('bg-primary', 'text-on-primary');
+        this.classList.remove('bg-surface-container-highest', 'text-primary');
+      }
+    });
+  }
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors group" data-path="home" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">local_activity</span></div><span class="font-label-sm text-label-sm tracking-tight">Home</span></a><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors group" data-path="search" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">search</span></div><span class="font-label-sm text-label-sm tracking-tight">Search</span></a><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors group" data-path="my-weekend" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">calendar_month</span></div><span class="font-label-sm text-label-sm tracking-tight">My Weekend</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 transition-colors group text-primary-container font-semibold" data-path="profile" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">person</span></div><span class="font-label-sm text-label-sm tracking-tight">Profile</span></a></div></nav></body></html>
