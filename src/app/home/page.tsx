@@ -422,7 +422,7 @@ export default function HomeFeedPage() {
 
         </div>
       </main>
-      <BottomNav activeTab="home" />
+      <BottomNav />
     </>
   )
 }
