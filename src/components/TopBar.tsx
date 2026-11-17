@@ -1,6 +1,5 @@
 'use client'
-import Image from 'next/image'
-import Link from 'next/link'
+import AccountButton from '@/components/AccountButton'
 import { useState } from 'react'
 
 interface TopBarProps {
@@ -30,9 +29,7 @@ export default function TopBar({ variant = 'home', title, city = 'London' }: Top
             <button aria-label="Share" className="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
               <span className="material-symbols-outlined text-[20px]">ios_share</span>
             </button>
-            <button aria-label="User Profile" className="w-11 h-11 flex items-center justify-center rounded-full hover:ring-2 hover:ring-primary/30 transition-all">
-              <Image src="https://lh3.googleusercontent.com/aida-public/AB6AXuBruRsfgDQs9j29BRLErZqJMIfq1_tpBG74OeO3LRIqldGuGQZjROaGaDn2Fr15ULZxGe3JeppuhFxXh_yU2nEM_fGH6db1qITe1Voy5zWZ22-x6JNdz6H9o2jQjG0HqQCBpOiNWyTOKRljIQQDTwbHi4M4cV4I9V0amKp5RUobQxOQXn1TsSx_BIBH1bIC_miHvRntpXyqaDFLNmwnyMWIHCdIs43Uo1HT7cinG-I9" alt="Profile" width={32} height={32} className="w-8 h-8 rounded-full object-cover" />
-            </button>
+            <AccountButton />
           </div>
         </div>
       </header>
@@ -55,9 +52,7 @@ export default function TopBar({ variant = 'home', title, city = 'London' }: Top
             <span className="material-symbols-outlined text-[22px]">notifications</span>
             {hasNotification && <span className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface" />}
           </button>
-          <Link href="/profile" aria-label="User Profile" className="w-11 h-11 flex items-center justify-center rounded-full hover:ring-2 hover:ring-primary/30 transition-all">
-            <Image src="https://lh3.googleusercontent.com/aida-public/AB6AXuBruRsfgDQs9j29BRLErZqJMIfq1_tpBG74OeO3LRIqldGuGQZjROaGaDn2Fr15ULZxGe3JeppuhFxXh_yU2nEM_fGH6db1qITe1Voy5zWZ22-x6JNdz6H9o2jQjG0HqQCBpOiNWyTOKRljIQQDTwbHi4M4cV4I9V0amKp5RUobQxOQXn1TsSx_BIBH1bIC_miHvRntpXyqaDFLNmwnyMWIHCdIs43Uo1HT7cinG-I9" alt="Profile" width={32} height={32} className="w-8 h-8 rounded-full object-cover" />
-          </Link>
+          <AccountButton />
         </div>
       </div>
     </header>

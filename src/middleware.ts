@@ -1,0 +1,11 @@
+import type { NextRequest } from 'next/server'
+import { updateSession } from '@/lib/supabase/middleware'
+
+export async function middleware(request: NextRequest) {
+  return updateSession(request)
+}
+
+export const config = {
+  // Run on pages, not on static files, images or the health check.
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|api/health|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)'],
+}
