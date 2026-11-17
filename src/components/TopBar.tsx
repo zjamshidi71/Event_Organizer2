@@ -9,7 +9,7 @@ interface TopBarProps {
   city?: string
 }
 
-export default function TopBar({ variant = 'home', title, city = 'New York, NY' }: TopBarProps) {
+export default function TopBar({ variant = 'home', title, city = 'London' }: TopBarProps) {
   const [hasNotification] = useState(true)
 
   if (variant === 'back') {
