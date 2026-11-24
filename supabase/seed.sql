@@ -1,5 +1,6 @@
 -- =====================================================================
 -- Weekendr – sample events (optional)
+-- Superseded by demo_data.sql, which has many more events, users and RSVPs.
 -- Run AFTER 0001_init.sql to see the Home feed populated.
 -- Dates are placed on the coming Saturday so they always show as "this weekend".
 -- Safe to re-run: existing sample events are replaced.

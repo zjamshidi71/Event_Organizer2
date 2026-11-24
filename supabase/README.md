@@ -187,3 +187,18 @@ and redeploy. It shows a **Contact** button on the organizer dashboard and a rep
 **Before real users sign up**, add your own email provider (e.g. Resend, Postmark, SendGrid) under
 **Project Settings → Authentication → SMTP Settings**. It removes the tiny hourly limit and makes emails far
 less likely to go to spam.
+
+---
+
+## Demo data (synthetic)
+
+To fill the app with realistic test data, run [`demo_data.sql`](demo_data.sql) in **SQL Editor**:
+
+- 8 demo organizers and 250 demo youth members (`demo-…@example.com`, no password – they can't log in)
+- 24 London events over this weekend and the next three, across every category: free and paid, featured,
+  age-restricted, almost full, sold out, hidden addresses, plus one draft
+- ~900 RSVPs and ~300 saved events from the demo members, so "going" counts are real
+
+Re-run it any time (e.g. weekly) to move the events to the current weekends – it replaces the previous demo
+data. RSVPs that real users made to demo events are removed when it re-runs.
+To remove all demo data, run [`remove_demo_data.sql`](remove_demo_data.sql). Real users and events are never touched.
