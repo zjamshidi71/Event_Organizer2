@@ -5,6 +5,9 @@ import { isSupabaseConfigured } from '@/lib/supabase/config'
 import { createClient } from '@/lib/supabase/server'
 import type { Profile } from '@/types/database'
 
+/** Remembers "I'm hosting events" across the Google/GitHub log-in round trip (read in /auth/confirm). */
+export const SIGNUP_ROLE_COOKIE = 'weekendr_signup_role'
+
 /** Only allow redirects to pages on this site (prevents "open redirect" tricks). */
 export function safeNext(next: unknown, fallback = '/home'): string {
   return typeof next === 'string' && next.startsWith('/') && !next.startsWith('//') && !next.startsWith('/\\')

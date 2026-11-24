@@ -21,7 +21,7 @@ The Next.js app lives at the repository root, so no extra configuration is neede
 
 ## Backend
 
-The app uses [Supabase](https://supabase.com) for its database and log-in. Setup steps: [`supabase/README.md`](supabase/README.md).
+The app uses [Supabase](https://supabase.com) for its database and log-in (email & password, Google and GitHub). Setup steps: [`supabase/README.md`](supabase/README.md).
 
 ## Project structure
 

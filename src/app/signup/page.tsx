@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import AuthShell from '@/components/auth/AuthShell'
 import SignupForm from '@/components/auth/SignupForm'
+import { getEnabledProviders } from '@/lib/auth-providers'
 
 export const metadata = { title: 'Sign up – Weekendr' }
 
-export default function SignupPage({ searchParams }: { searchParams: { next?: string } }) {
+export default async function SignupPage({ searchParams }: { searchParams: { next?: string } }) {
+  const providers = await getEnabledProviders()
   return (
     <AuthShell
       title="Join Weekendr"
@@ -18,7 +20,7 @@ export default function SignupPage({ searchParams }: { searchParams: { next?: st
         </>
       }
     >
-      <SignupForm next={searchParams.next} />
+      <SignupForm next={searchParams.next} providers={providers} />
     </AuthShell>
   )
 }

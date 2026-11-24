@@ -1,10 +1,13 @@
 import Link from 'next/link'
 import AuthShell from '@/components/auth/AuthShell'
 import LoginForm from '@/components/auth/LoginForm'
+import SocialButtons from '@/components/auth/SocialButtons'
+import { getEnabledProviders } from '@/lib/auth-providers'
 
 export const metadata = { title: 'Log in – Weekendr' }
 
-export default function LoginPage({ searchParams }: { searchParams: { next?: string; notice?: string } }) {
+export default async function LoginPage({ searchParams }: { searchParams: { next?: string; notice?: string } }) {
+  const providers = await getEnabledProviders()
   const signupHref = searchParams.next ? `/signup?next=${encodeURIComponent(searchParams.next)}` : '/signup'
   return (
     <AuthShell
@@ -19,7 +22,10 @@ export default function LoginPage({ searchParams }: { searchParams: { next?: str
         </>
       }
     >
-      <LoginForm next={searchParams.next} notice={searchParams.notice} />
+      <div className="flex flex-col gap-4">
+        <SocialButtons providers={providers} next={searchParams.next} />
+        <LoginForm next={searchParams.next} notice={searchParams.notice} />
+      </div>
     </AuthShell>
   )
 }

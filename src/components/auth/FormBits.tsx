@@ -87,8 +87,9 @@ export function FormAlert({ error, message }: { error?: string; message?: string
 
 const NOTICES: Record<string, { error?: string; message?: string }> = {
   'logged-out': { message: 'You’ve been logged out.' },
-  'link-invalid': { error: 'That link is invalid or has expired. Please request a new one.' },
+  'link-invalid': { error: 'That link is invalid or has expired. Please try again or request a new one.' },
   'password-updated': { message: 'Your password has been updated.' },
+  'oauth-failed': { error: 'Log-in with Google/GitHub didn’t complete. Please try again, or use your email and password.' },
 }
 
 export function Notice({ code }: { code?: string }) {

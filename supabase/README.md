@@ -106,3 +106,47 @@ Before launching to real users, add your own email provider under
 
 Logged-out visitors are sent to `/login` from `/profile`, `/my-weekend`, `/create-event` and `/organizer`.
 `/create-event` and `/organizer` are for organizer accounts only.
+
+---
+
+## Part 3 – "Continue with Google" and "Continue with GitHub"
+
+The buttons appear on `/login` and `/signup` automatically once a provider is switched on in Supabase
+(the app re-checks every 5 minutes). Until then they're hidden, so nothing breaks.
+
+### 0. Update the database (once)
+In **SQL Editor**, run [`migrations/0002_oauth_profiles.sql`](migrations/0002_oauth_profiles.sql).
+It makes new Google/GitHub accounts get the right name and photo.
+
+### 1. Find your Supabase callback URL
+**Authentication → Sign In / Providers → Google** (or GitHub). The panel shows a **Callback URL**, like
+`https://<your-project-ref>.supabase.co/auth/v1/callback`. Copy it – both Google and GitHub need it.
+
+### 2. Google
+1. Go to https://console.cloud.google.com and create (or pick) a project.
+2. Open **Google Auth Platform** (search for "OAuth consent screen" if you can't find it).
+   - **Branding**: app name "Weekendr", your support email, then save.
+   - **Audience**: user type **External**.
+   - **Clients → Create client** → type **Web application**:
+     - **Authorized JavaScript origins**: `https://your-app.vercel.app`
+     - **Authorized redirect URIs**: the Supabase **Callback URL** from step 1
+   - Copy the **Client ID** and **Client secret**.
+3. In Supabase: **Authentication → Sign In / Providers → Google** → turn on, paste the Client ID and
+   secret → **Save**.
+4. Back in Google: **Audience → Publish app**. While the app is in "Testing", only the test users you list
+   there can log in.
+
+### 3. GitHub
+1. Go to https://github.com/settings/developers → **OAuth Apps** → **New OAuth App**.
+   - **Homepage URL**: `https://your-app.vercel.app`
+   - **Authorization callback URL**: the Supabase **Callback URL** from step 1
+2. Click **Register application**, then **Generate a new client secret**. Copy the **Client ID** and the secret
+   (GitHub only shows the secret once).
+3. In Supabase: **Authentication → Sign In / Providers → GitHub** → turn on, paste both → **Save**.
+
+### How it behaves
+- On `/signup`, choosing **Hosting events** before clicking Google/GitHub makes a *new* account an organizer.
+  Existing accounts are never changed this way (they can use **Become an organizer** on the profile page).
+- If someone already has an email/password account and then uses Google with the same (verified) email,
+  Supabase links them to the same account.
+- Cancelling on the Google/GitHub screen brings people back to `/login` with a friendly message.

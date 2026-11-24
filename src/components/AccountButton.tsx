@@ -27,8 +27,10 @@ export default function AccountButton() {
       return
     }
     const supabase = createClient()
-    const apply = (user: { email?: string; user_metadata?: { full_name?: string } } | null) =>
-      setAccount(user ? { initials: initialsFrom(user.user_metadata?.full_name, user.email) } : null)
+    const apply = (user: { email?: string; user_metadata?: { full_name?: string; name?: string; user_name?: string } } | null) => {
+      const m = user?.user_metadata
+      setAccount(user ? { initials: initialsFrom(m?.full_name || m?.name || m?.user_name, user.email) } : null)
+    }
 
     supabase.auth.getUser().then(({ data }) => apply(data.user))
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => apply(session?.user ?? null))

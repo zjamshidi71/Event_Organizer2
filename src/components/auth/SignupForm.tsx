@@ -5,13 +5,14 @@ import { useState } from 'react'
 import { useFormState } from 'react-dom'
 import { signup, type AuthState } from '@/app/auth/actions'
 import { Field, FormAlert, SubmitButton } from './FormBits'
+import SocialButtons from './SocialButtons'
 
 const ROLES = [
   { value: 'youth', icon: 'celebration', title: 'Going to events', text: 'Find things to do this weekend' },
   { value: 'organizer', icon: 'campaign', title: 'Hosting events', text: 'Create and manage your events' },
 ] as const
 
-export default function SignupForm({ next }: { next?: string }) {
+export default function SignupForm({ next, providers }: { next?: string; providers: ('google' | 'github')[] }) {
   const [state, action] = useFormState<AuthState, FormData>(signup, undefined)
   const [role, setRole] = useState<'youth' | 'organizer'>('youth')
 
@@ -29,11 +30,7 @@ export default function SignupForm({ next }: { next?: string }) {
   }
 
   return (
-    <form action={action} className="flex flex-col gap-4">
-      <FormAlert error={state?.error} />
-      <input type="hidden" name="next" value={next ?? ''} />
-      <input type="hidden" name="role" value={role} />
-
+    <div className="flex flex-col gap-4">
       <fieldset className="flex flex-col gap-1.5">
         <legend className="font-inter text-label-md text-on-surface mb-1.5">I’m mainly…</legend>
         <div className="grid grid-cols-2 gap-2">
@@ -57,16 +54,24 @@ export default function SignupForm({ next }: { next?: string }) {
         </div>
       </fieldset>
 
-      <Field label="Your name" name="full_name" autoComplete="name" />
-      <Field label="Email" name="email" type="email" autoComplete="email" defaultValue={state?.email} />
-      <Field label="Password" name="password" type="password" autoComplete="new-password" minLength={8} hint="At least 8 characters" />
+      <SocialButtons providers={providers} next={next} role={role} />
 
-      <label className="flex items-start gap-2.5 font-inter text-body-md text-on-surface-variant">
-        <input type="checkbox" name="terms" required className="mt-1 w-4 h-4 accent-primary" />
-        <span>I agree to the community guidelines: no harassment, hate speech or unsafe behaviour.</span>
-      </label>
+      <form action={action} className="flex flex-col gap-4">
+        <FormAlert error={state?.error} />
+        <input type="hidden" name="next" value={next ?? ''} />
+        <input type="hidden" name="role" value={role} />
 
-      <SubmitButton pendingText="Creating account…">Create account</SubmitButton>
-    </form>
+        <Field label="Your name" name="full_name" autoComplete="name" />
+        <Field label="Email" name="email" type="email" autoComplete="email" defaultValue={state?.email} />
+        <Field label="Password" name="password" type="password" autoComplete="new-password" minLength={8} hint="At least 8 characters" />
+
+        <label className="flex items-start gap-2.5 font-inter text-body-md text-on-surface-variant">
+          <input type="checkbox" name="terms" required className="mt-1 w-4 h-4 accent-primary" />
+          <span>I agree to the community guidelines: no harassment, hate speech or unsafe behaviour.</span>
+        </label>
+
+        <SubmitButton pendingText="Creating account…">Create account</SubmitButton>
+      </form>
+    </div>
   )
 }

@@ -1,9 +1,9 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { headers } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { safeNext } from '@/lib/auth'
+import { SIGNUP_ROLE_COOKIE, safeNext } from '@/lib/auth'
 import { isSupabaseConfigured } from '@/lib/supabase/config'
 import { createClient } from '@/lib/supabase/server'
 
@@ -139,4 +139,29 @@ export async function becomeOrganizer() {
   }
   revalidatePath('/', 'layout')
   redirect('/organizer')
+}
+
+/** "Continue with Google / GitHub": sends the browser to the provider's log-in page. */
+export async function signInWithProvider(form: FormData) {
+  const provider = form.get('provider')
+  if (provider !== 'google' && provider !== 'github') redirect('/login?notice=oauth-failed')
+  if (!isSupabaseConfigured) redirect('/login?notice=oauth-failed')
+
+  const next = safeNext(form.get('next'))
+  const supabase = createClient()
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: { redirectTo: `${siteOrigin()}/auth/confirm?next=${encodeURIComponent(next)}` },
+  })
+  if (error || !data.url) {
+    console.error('signInWithOAuth failed:', error?.message)
+    redirect('/login?notice=oauth-failed')
+  }
+
+  // New accounts are "youth" by default; remember if they picked "Hosting events" on the sign-up page.
+  if (form.get('role') === 'organizer') {
+    cookies().set(SIGNUP_ROLE_COOKIE, 'organizer', { httpOnly: true, sameSite: 'lax', secure: true, path: '/', maxAge: 600 })
+  }
+
+  redirect(data.url)
 }
