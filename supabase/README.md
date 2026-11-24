@@ -236,3 +236,41 @@ Re-run [`demo_data.sql`](demo_data.sql) so the demo events get map pins.
 ### Costs
 The embedded maps (Maps Embed API) are free. Venue suggestions (Places API) are billed per search session
 after a free monthly allowance – check Google's current Maps Platform pricing page, and keep the budget alert on.
+
+---
+
+## AI Weekend Planner (OpenRouter, 5 agents)
+
+`/plan` (and the "Plan my weekend with AI" card on Home) lets members describe their ideal weekend and get a plan
+built from this weekend's real events. Five AI agents run in order, coordinated by code in `src/lib/ai/planner.ts`:
+
+| # | Agent | Job | Model setting |
+|---|---|---|---|
+| 1 | Interest Analyst | Turns the message into preferences (days, categories, budget…) | `OPENROUTER_FAST_MODEL` |
+| 2 | Event Scout | Searches events with tools, reads details, submits a shortlist | `OPENROUTER_MODEL` |
+| 3 | Safety Checker | Removes picks unsuitable for the member's age | `OPENROUTER_FAST_MODEL` |
+| 4 | Budget & Logistics | Builds a schedule with no clashes, within budget | `OPENROUTER_MODEL` |
+| 5 | Itinerary Writer | Writes the headline, summary and a line per event | `OPENROUTER_FAST_MODEL` |
+
+Rules enforced by code (not the AI): only real, published, not-full, upcoming events; age limits (events a member
+can't attend are never shown to the AI); budget and clashing times; organizer-written text is treated as data.
+If an agent returns something unusable, the app retries once and then falls back to simple rules.
+
+### Setup
+1. Create an account at https://openrouter.ai, add credits, and create an API key (**Keys → Create key**).
+   Set a credit limit on the key to cap spending.
+2. Supabase **SQL Editor**: run [`migrations/0004_planner_runs.sql`](migrations/0004_planner_runs.sql)
+   (usage log for the per-member hourly limit).
+3. Vercel **Settings → Environment Variables** (server-side – do **not** prefix with `NEXT_PUBLIC_`):
+   - `OPENROUTER_API_KEY` – your key (required)
+   - `OPENROUTER_MODEL` – main model, default `anthropic/claude-sonnet-4.5`
+   - `OPENROUTER_FAST_MODEL` – cheaper model for simple steps, default `anthropic/claude-haiku-4.5`
+   - `PLANNER_HOURLY_LIMIT` – runs per member per hour, default `5`
+   - `NEXT_PUBLIC_SITE_URL` – optional, your site address (sent to OpenRouter for attribution)
+
+   Model ids must match https://openrouter.ai/models exactly, and the models must support **tool calling** and
+   **structured outputs** (filter by those on the models page). Then **Redeploy**.
+
+### Costs & limits
+One plan makes roughly 6–9 model calls (about 10–20k tokens in total). Track spend in OpenRouter's **Activity**
+page. Vercel's function time limit applies: the route allows up to 60 seconds.

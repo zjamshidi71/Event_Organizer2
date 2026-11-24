@@ -6,7 +6,7 @@ import type { Database } from '@/types/database'
 import { isSupabaseConfigured, supabaseKey, supabaseUrl } from './config'
 
 // Pages that need a logged-in user. (Organizer-only checks happen in those pages' layouts.)
-const PROTECTED_PREFIXES = ['/profile', '/my-weekend', '/create-event', '/organizer', '/reset-password']
+const PROTECTED_PREFIXES = ['/profile', '/my-weekend', '/create-event', '/organizer', '/reset-password', '/plan']
 // Pages a logged-in user doesn't need to see.
 const AUTH_PAGES = ['/login', '/signup']
 

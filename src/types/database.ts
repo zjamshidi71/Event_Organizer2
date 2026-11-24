@@ -61,6 +61,14 @@ type RsvpRow = {
   checked_in: boolean
 }
 
+type PlannerRunRow = {
+  id: number
+  user_id: string
+  created_at: string
+  status: 'started' | 'succeeded' | 'failed'
+  tokens: number | null
+}
+
 type SavedEventRow = {
   event_id: string
   user_id: string
@@ -121,6 +129,12 @@ export type Database = {
             referencedColumns: ['id']
           },
         ]
+      }
+      planner_runs: {
+        Row: PlannerRunRow
+        Insert: Partial<Pick<PlannerRunRow, 'user_id' | 'status' | 'tokens'>>
+        Update: Partial<Pick<PlannerRunRow, 'status' | 'tokens'>>
+        Relationships: []
       }
     }
     Views: Record<string, never>
