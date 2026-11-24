@@ -7,7 +7,7 @@ import { SIGNUP_ROLE_COOKIE, safeNext } from '@/lib/auth'
 import { isSupabaseConfigured } from '@/lib/supabase/config'
 import { createClient } from '@/lib/supabase/server'
 
-export type AuthState = { error?: string; message?: string; email?: string } | undefined
+export type AuthState = { error?: string; message?: string; email?: string; unconfirmed?: boolean } | undefined
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MIN_PASSWORD = 8
@@ -44,7 +44,10 @@ export async function login(_prev: AuthState, form: FormData): Promise<AuthState
 
   const supabase = createClient()
   const { error } = await supabase.auth.signInWithPassword({ email, password })
-  if (error) return { error: friendly(error.message), email }
+  if (error) {
+    const unconfirmed = error.message.toLowerCase().includes('email not confirmed')
+    return { error: friendly(error.message), email, unconfirmed }
+  }
 
   revalidatePath('/', 'layout')
   redirect(safeNext(form.get('next')))
@@ -164,4 +167,27 @@ export async function signInWithProvider(form: FormData) {
   }
 
   redirect(data.url)
+}
+
+/** Sends the sign-up confirmation email again (e.g. it went to spam or never arrived). */
+export async function resendConfirmation(_prev: AuthState, form: FormData): Promise<AuthState> {
+  if (!isSupabaseConfigured) return NOT_CONFIGURED
+  const email = field(form, 'email').toLowerCase()
+  if (!EMAIL_RE.test(email)) return { error: 'Enter your email address above first.' }
+
+  const supabase = createClient()
+  const { error } = await supabase.auth.resend({
+    type: 'signup',
+    email,
+    options: { emailRedirectTo: `${siteOrigin()}/auth/confirm?next=/home` },
+  })
+  if (error) {
+    console.error('resend confirmation failed:', error.message)
+    const msg = friendly(error.message)
+    if (msg.startsWith('Too many') || /seconds|rate/i.test(error.message)) {
+      return { error: 'An email was sent very recently. Please wait a minute, check your spam folder, then try again.', email }
+    }
+  }
+  // Same message either way, so this can't be used to check which emails have accounts.
+  return { message: `If ${email} is waiting for confirmation, a new link is on its way. Check your spam folder too.`, email }
 }

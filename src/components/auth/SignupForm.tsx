@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useFormState } from 'react-dom'
 import { signup, type AuthState } from '@/app/auth/actions'
 import { Field, FormAlert, SubmitButton } from './FormBits'
+import ResendConfirmation from './ResendConfirmation'
 import SocialButtons from './SocialButtons'
 
 const ROLES = [
@@ -22,6 +23,7 @@ export default function SignupForm({ next, providers }: { next?: string; provide
         <span className="material-symbols-outlined text-primary text-[48px] self-center">mark_email_unread</span>
         <FormAlert message={state.message} />
         <p className="font-inter text-label-md text-outline">Can’t find it? Check your spam folder.</p>
+        {state.email && <ResendConfirmation email={state.email} />}
         <Link href="/login" className="font-inter text-label-md text-primary font-bold">
           Go to log in
         </Link>

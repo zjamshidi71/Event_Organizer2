@@ -165,3 +165,25 @@ Without this step everything else works, but photo uploads fail with "Upload fai
 ### Optional: support email
 Add `NEXT_PUBLIC_SUPPORT_EMAIL` (e.g. `hello@yourdomain.com`) in Vercel → Settings → Environment Variables
 and redeploy. It shows a **Contact** button on the organizer dashboard and a report address on `/guidelines`.
+
+---
+
+## Troubleshooting: "I never got the confirmation email"
+
+1. **Check spam / promotions.** Supabase's built-in emails often land there.
+2. **Use "Resend confirmation email"** – it appears on the sign-up success screen and when you try to log
+   in with an unconfirmed account.
+3. **Check the logs:** Supabase → **Logs → Auth**. "email rate limit exceeded" means the built-in sender's
+   hourly limit (only a few emails per hour) was hit – wait an hour, or set up your own SMTP (below).
+4. **Check URL settings:** Authentication → URL Configuration → Site URL must be your Vercel address
+   (see Part 2), otherwise the link in the email points to the wrong place.
+5. **Confirm an account by hand** (for yourself / testers): SQL Editor →
+   ```sql
+   update auth.users set email_confirmed_at = now() where email = 'person@example.com';
+   ```
+6. **While testing**, you can turn off **Confirm email** (Authentication → Sign In / Providers → Email)
+   so new accounts can log in straight away. Turn it back on before launch.
+
+**Before real users sign up**, add your own email provider (e.g. Resend, Postmark, SendGrid) under
+**Project Settings → Authentication → SMTP Settings**. It removes the tiny hourly limit and makes emails far
+less likely to go to spam.
