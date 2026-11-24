@@ -7,8 +7,10 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { saveEvent, type EventFormState } from '@/app/create-event/actions'
 import EventCard from '@/components/EventCard'
 import TopBar from '@/components/TopBar'
+import VenueInput from '@/components/VenueInput'
 import { CATEGORY_META } from '@/lib/categories'
 import { londonToDate } from '@/lib/datetime'
+import { embedMapUrl } from '@/lib/map-links'
 import { createClient } from '@/lib/supabase/client'
 import type { AgeGroup, Category, EventRecord } from '@/types/database'
 
@@ -115,6 +117,8 @@ export default function EventForm({ userId, defaultHostName, defaultDate, minDat
   const [endTime, setEndTime] = useState('22:00')
   const [venue, setVenue] = useState('')
   const [area, setArea] = useState('')
+  const [coords, setCoords] = useState<{ latitude: number; longitude: number } | null>(null)
+  const autoArea = useRef('') // last area filled in automatically, so we don't overwrite the user's own
   const [exactPin, setExactPin] = useState(true)
   const [capacity, setCapacity] = useState(100)
   const [ticketType, setTicketType] = useState<'free' | 'paid'>('free')
@@ -194,8 +198,8 @@ export default function EventForm({ userId, defaultHostName, defaultDate, minDat
     venue: venue || null,
     area: area || null,
     city: 'London',
-    latitude: null,
-    longitude: null,
+    latitude: coords?.latitude ?? null,
+    longitude: coords?.longitude ?? null,
     show_exact_location: exactPin,
     capacity: capacity || 1,
     ticket_type: pricePence > 0 ? 'paid' : 'free',
@@ -470,20 +474,33 @@ export default function EventForm({ userId, defaultHostName, defaultDate, minDat
             <label className={labelClass} htmlFor="venue">
               Where is the crowd gathering? <span className="text-secondary">*</span>
             </label>
-            <div className="relative">
-              <span className="material-symbols-outlined absolute left-3.5 top-3.5 text-primary text-[20px]">location_on</span>
-              <input
-                id="venue"
-                name="venue"
-                required
-                minLength={3}
-                maxLength={200}
-                className={`${inputClass} pl-10`}
-                placeholder="Venue name, landmark, or street address"
-                value={venue}
-                onChange={(e) => touch(setVenue)(e.target.value)}
+            <VenueInput
+              value={venue}
+              className={inputClass}
+              onChange={(text) => {
+                setDirty(true)
+                setVenue(text)
+                setCoords(null) // typed by hand: the map pin no longer matches
+              }}
+              onPick={(place) => {
+                setCoords({ latitude: place.latitude, longitude: place.longitude })
+                if (place.area && (!area || area === autoArea.current)) {
+                  setArea(place.area)
+                  autoArea.current = place.area
+                }
+              }}
+            />
+            {coords && <input type="hidden" name="latitude" value={coords.latitude} />}
+            {coords && <input type="hidden" name="longitude" value={coords.longitude} />}
+            {coords && embedMapUrl(coords) && (
+              <iframe
+                title="Map of the venue"
+                src={embedMapUrl(coords, 16)!}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-36 rounded-DEFAULT shadow-sm border-0"
               />
-            </div>
+            )}
             <FieldError message={fe.venue} />
             <input
               name="area"

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import EventCard from '@/components/EventCard'
 import { CATEGORY_META } from '@/lib/categories'
+import { distanceMiles } from '@/lib/map-links'
 import { londonDate, type DayKey, type WeekendDay } from '@/lib/weekend'
 import type { Category, EventRecord } from '@/types/database'
 
@@ -22,6 +23,8 @@ const FILTERS: { key: Filter; emoji: string; label: string }[] = [
 
 // Until accounts arrive (Step 4–5), saved events are remembered on this device only.
 const SAVED_KEY = 'weekendr:saved-events'
+// The user's location is kept only in this browser tab, never sent to the server.
+const LOCATION_KEY = 'weekendr:my-location'
 
 interface HomeFeedProps {
   days: WeekendDay[]
@@ -34,6 +37,59 @@ export default function HomeFeed({ days, initialDay, events, error }: HomeFeedPr
   const [activeDay, setActiveDay] = useState<DayKey>(initialDay)
   const [activeFilter, setActiveFilter] = useState<Filter>('all')
   const [saved, setSaved] = useState<Set<string>>(new Set())
+  const [myLocation, setMyLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [locating, setLocating] = useState(false)
+  const [locationError, setLocationError] = useState('')
+
+  useEffect(() => {
+    try {
+      const raw = window.sessionStorage.getItem(LOCATION_KEY)
+      if (raw) setMyLocation(JSON.parse(raw))
+    } catch {
+      /* ignore */
+    }
+  }, [])
+
+  const toggleNearMe = () => {
+    setLocationError('')
+    if (myLocation) {
+      setMyLocation(null)
+      try {
+        window.sessionStorage.removeItem(LOCATION_KEY)
+      } catch {
+        /* ignore */
+      }
+      return
+    }
+    if (!('geolocation' in navigator)) return setLocationError('Your browser can’t share its location.')
+    setLocating(true)
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }
+        setMyLocation(loc)
+        setLocating(false)
+        try {
+          window.sessionStorage.setItem(LOCATION_KEY, JSON.stringify(loc))
+        } catch {
+          /* ignore */
+        }
+      },
+      (err) => {
+        setLocating(false)
+        setLocationError(
+          err.code === err.PERMISSION_DENIED
+            ? 'Location is blocked. Allow it in your browser settings to see distances.'
+            : 'Couldn’t find your location. Please try again.',
+        )
+      },
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 5 * 60 * 1000 },
+    )
+  }
+
+  const distanceTo = (e: EventRecord) =>
+    myLocation && e.latitude != null && e.longitude != null
+      ? distanceMiles(myLocation, { lat: e.latitude, lng: e.longitude })
+      : null
 
   useEffect(() => {
     try {
@@ -89,11 +145,24 @@ export default function HomeFeed({ days, initialDay, events, error }: HomeFeedPr
             <p className="font-inter text-label-sm text-primary uppercase tracking-wider mb-0.5">London Happening Now</p>
             <h1 className="font-jakarta text-headline-xl-mobile text-on-surface tracking-tight">This Weekend</h1>
           </div>
-          <span className="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full text-on-surface shadow-sm">
-            <span className="material-symbols-outlined text-primary text-[18px]">near_me</span>
-            <span className="font-inter text-label-md">London</span>
-          </span>
+          <button
+            type="button"
+            onClick={toggleNearMe}
+            aria-pressed={Boolean(myLocation)}
+            disabled={locating}
+            className={`flex items-center gap-1 px-3 py-1.5 rounded-full shadow-sm transition-colors ${
+              myLocation ? 'bg-primary text-on-primary' : 'bg-surface-container-low text-on-surface hover:bg-surface-container'
+            }`}
+          >
+            <span className={`material-symbols-outlined text-[18px] ${myLocation ? '' : 'text-primary'} ${locating ? 'animate-pulse' : ''}`}>near_me</span>
+            <span className="font-inter text-label-md">{locating ? 'Locating…' : myLocation ? 'Near me' : 'London'}</span>
+          </button>
         </div>
+        {locationError && (
+          <p role="alert" className="mb-2 font-inter text-label-md text-error">
+            {locationError}
+          </p>
+        )}
 
         <div className="grid grid-cols-3 gap-2.5">
           {days.map((day) => {
@@ -183,6 +252,7 @@ export default function HomeFeed({ days, initialDay, events, error }: HomeFeedPr
                 key={event.id}
                 event={event}
                 large={i === 0 && event.is_featured}
+                distance={distanceTo(event)}
                 saved={saved.has(event.id)}
                 onToggleSave={() => toggleSave(event.id)}
               />

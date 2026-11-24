@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { londonToDate } from '@/lib/datetime'
+import { isPlausibleUkLocation } from '@/lib/map-links'
 import { isSupabaseConfigured, supabaseUrl } from '@/lib/supabase/config'
 import { createClient } from '@/lib/supabase/server'
 import type { AgeGroup, Category, Database } from '@/types/database'
@@ -74,6 +75,16 @@ export async function saveEvent(_prev: EventFormState, form: FormData): Promise<
   // ── Where ───────────────────────────────────────────────
   const venue = text(form, 'venue')
   if (venue.length < 3 || venue.length > 200) errors.venue = 'Add the venue or address.'
+  // Map pin from the venue search (optional – absent if the address was typed by hand).
+  const latRaw = text(form, 'latitude')
+  const lngRaw = text(form, 'longitude')
+  let latitude: number | null = null
+  let longitude: number | null = null
+  if (latRaw || lngRaw) {
+    latitude = Number(latRaw)
+    longitude = Number(lngRaw)
+    if (!isPlausibleUkLocation(latitude, longitude)) errors.venue = 'Pick a venue in the UK from the suggestions.'
+  }
   const area = text(form, 'area')
   if (area.length > 40) errors.area = 'Keep the area short, e.g. "Hackney, E8".'
 
@@ -115,6 +126,8 @@ export async function saveEvent(_prev: EventFormState, form: FormData): Promise<
     ends_at: endsAt?.toISOString() ?? null,
     venue,
     area: area || null,
+    latitude,
+    longitude,
     show_exact_location: form.get('show_exact_location') === 'on',
     capacity,
     ticket_type: ticketType,

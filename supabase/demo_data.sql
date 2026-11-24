@@ -156,6 +156,33 @@ cross join (values
 join demo_organizers o on o.n = e.org
 join demo_users du on du.kind = 'organizer' and du.n = e.org;
 
+-- Map pins (approximate) so maps and "x mi away" distances work.
+update public.events e
+set latitude = c.lat, longitude = c.lng
+from (values
+  ('The Book Club, Shoreditch',            51.5246, -0.0830),
+  ('Corsica Studios',                      51.4940, -0.0985),
+  ('Regent''s Canal, Broadway Market',      51.5365, -0.0619),
+  ('London Fields Courts',                 51.5418, -0.0605),
+  ('Darkroom Studio, Dalston',             51.5462, -0.0754),
+  ('Warehouse 9, Hackney Wick',            51.5434, -0.0244),
+  ('Bussey Building Rooftop',              51.4693, -0.0688),
+  ('The Workshop Space, Aldgate',          51.5142, -0.0755),
+  ('Southbank Undercroft',                 51.5069, -0.1167),
+  ('Phoenix Garden, Covent Garden',        51.5144, -0.1285),
+  ('SubGround Studio',                     51.4980, -0.0640),
+  ('Rich Mix',                             51.5238, -0.0727),
+  ('Haggerston Park Pitches',              51.5320, -0.0670),
+  ('Peckham Plates Kitchen, 14 Rye Lane',  51.4720, -0.0690),
+  ('The Water Rats, King''s Cross',         51.5302, -0.1187),
+  ('Hackney Foodbank Warehouse',           51.5450, -0.0550),
+  ('Draughts Waterloo',                    51.5021, -0.1146),
+  ('Copper Box Arena',                     51.5446, -0.0201),
+  ('Meet at Tate Modern',                  51.5076, -0.0994)
+) as c(venue, lat, lng)
+where e.venue = c.venue
+  and e.organizer_id in (select id from demo_users where kind = 'organizer');
+
 -- ---------------------------------------------------------------------
 -- 4. RSVPs – how full each event is (sold out, almost full, quiet…).
 --    The RSVP trigger keeps events.rsvp_count correct.

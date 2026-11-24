@@ -4,6 +4,7 @@ import TopBar from '@/components/TopBar'
 import { CATEGORY_META } from '@/lib/categories'
 import { getCurrentUser } from '@/lib/auth'
 import { getEventById, hidePrivateVenue } from '@/lib/events'
+import { directionsUrl, embedMapUrl } from '@/lib/map-links'
 import { ageLabel, formatLongDate, formatPrice, formatTime, percentFull, spotsLeft } from '@/lib/format'
 
 export const dynamic = 'force-dynamic'
@@ -37,6 +38,14 @@ export default async function EventDetailsPage({
   // Organizers always see their own venue; others only if it's set to public.
   const event = isOwner ? result.data : hidePrivateVenue(result.data)
   const venueHidden = !event.show_exact_location && !isOwner
+  const areaQuery = event.area ? `${event.area}, ${event.city}` : null
+  // Exact pin when allowed; otherwise just the general area.
+  const mapUrl = venueHidden
+    ? embedMapUrl({ query: areaQuery }, 13)
+    : embedMapUrl({ latitude: event.latitude, longitude: event.longitude, query: event.venue ?? areaQuery }, 16)
+  const directions = venueHidden
+    ? null
+    : directionsUrl({ latitude: event.latitude, longitude: event.longitude, query: event.venue ? `${event.venue}, ${event.city}` : null })
 
   const price = formatPrice(event)
   const isFree = price === 'Free'
@@ -138,6 +147,31 @@ export default async function EventDetailsPage({
 
             {event.description && (
               <p className="font-jakarta text-body-lg text-on-surface-variant whitespace-pre-line mt-1">{event.description}</p>
+            )}
+
+            {(mapUrl || directions) && (
+              <div className="flex flex-col gap-2 mt-1">
+                {mapUrl && (
+                  <iframe
+                    title={venueHidden ? 'Map of the area' : 'Map of the venue'}
+                    src={mapUrl}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-48 rounded-xl border-0 bg-surface-container-high"
+                  />
+                )}
+                {directions && (
+                  <a
+                    href={directions}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-11 rounded-full bg-surface-container-high text-primary font-inter text-label-md font-bold flex items-center justify-center gap-1.5 hover:bg-surface-container-highest"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">directions</span>
+                    Get directions
+                  </a>
+                )}
+              </div>
             )}
 
             {(event.safe_space_accepted || event.verified_host_onsite) && (

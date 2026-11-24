@@ -4,16 +4,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CATEGORY_META } from '@/lib/categories'
 import { ageLabel, formatDayTime, formatPrice, percentFull, spotsLeft } from '@/lib/format'
+import { formatMiles } from '@/lib/map-links'
 import type { EventRecord } from '@/types/database'
 
 interface EventCardProps {
   event: EventRecord
   large?: boolean
+  /** Miles from the user, when they've shared their location. */
+  distance?: number | null
   saved: boolean
   onToggleSave: () => void
 }
 
-export default function EventCard({ event, large = false, saved, onToggleSave }: EventCardProps) {
+export default function EventCard({ event, large = false, distance = null, saved, onToggleSave }: EventCardProps) {
   const category = event.categories[0] ? CATEGORY_META[event.categories[0]] : null
   const price = formatPrice(event)
   const isFree = price === 'Free'
@@ -93,11 +96,11 @@ export default function EventCard({ event, large = false, saved, onToggleSave }:
           <div className="flex items-center gap-1.5 font-inter text-label-sm bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full min-w-0">
             <span className="material-symbols-outlined text-[15px] text-tertiary-fixed-dim">schedule</span>
             <span className="whitespace-nowrap">{formatDayTime(event.starts_at)}</span>
-            {event.area && (
+            {(distance != null || event.area) && (
               <>
                 <span className="text-outline-variant">•</span>
                 <span className="material-symbols-outlined text-[15px] text-secondary-fixed">place</span>
-                <span className="truncate">{event.area}</span>
+                <span className="truncate">{distance != null ? `${formatMiles(distance)} away` : event.area}</span>
               </>
             )}
           </div>

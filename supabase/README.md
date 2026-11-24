@@ -202,3 +202,37 @@ To fill the app with realistic test data, run [`demo_data.sql`](demo_data.sql) i
 Re-run it any time (e.g. weekly) to move the events to the current weekends – it replaces the previous demo
 data. RSVPs that real users made to demo events are removed when it re-runs.
 To remove all demo data, run [`remove_demo_data.sql`](remove_demo_data.sql). Real users and events are never touched.
+
+---
+
+## Google Maps (venue search, maps, distances)
+
+What it adds: venue suggestions as organizers type on `/create-event` (fills in the map pin and area),
+a map + **Get directions** on event pages, and **Near me** distances on Home.
+Without a key, the app still works: plain venue box, no maps (Get directions still works).
+
+### 1. Google Cloud
+1. Go to https://console.cloud.google.com and pick your project (the one you used for Google log-in is fine).
+2. **Billing**: Google Maps needs a billing account linked to the project, even for the free monthly usage.
+   Then set a safety limit: **Billing → Budgets & alerts → Create budget** (e.g. £10/month with email alerts).
+3. **APIs & Services → Library** – search for and **Enable** each of:
+   - **Maps JavaScript API**
+   - **Places API (New)**
+   - **Maps Embed API**
+4. **APIs & Services → Credentials → Create credentials → API key**. Then click the new key to edit it:
+   - **Application restrictions → Websites**, add: `https://your-app.vercel.app/*` and `http://localhost:3000/*`
+   - **API restrictions → Restrict key** → tick the three APIs above → **Save**
+
+   The key is visible in the browser by design – these restrictions are what stop others using it.
+5. Optional: **APIs & Services → Places API (New) → Quotas** – set a daily cap on autocomplete requests.
+
+### 2. Vercel
+**Settings → Environment Variables** → add `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` = your key (all environments),
+then **Deployments → ⋯ → Redeploy**. (The key is built into the app, so a redeploy is required.)
+
+### 3. Demo data
+Re-run [`demo_data.sql`](demo_data.sql) so the demo events get map pins.
+
+### Costs
+The embedded maps (Maps Embed API) are free. Venue suggestions (Places API) are billed per search session
+after a free monthly allowance – check Google's current Maps Platform pricing page, and keep the budget alert on.
