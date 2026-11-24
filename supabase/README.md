@@ -150,3 +150,18 @@ It makes new Google/GitHub accounts get the right name and photo.
 - If someone already has an email/password account and then uses Google with the same (verified) email,
   Supabase links them to the same account.
 - Cancelling on the Google/GitHub screen brings people back to `/login` with a friendly message.
+
+---
+
+## Part 4 – Creating events (cover photos)
+
+Organizers can now publish events and save drafts from `/create-event`.
+For cover-photo uploads, run [`migrations/0003_event_images.sql`](migrations/0003_event_images.sql) once in
+**SQL Editor**. It creates a public **event-images** storage bucket (5 MB max, JPG/PNG/WebP) where only
+organizers can upload, each into their own folder. Check it under **Storage** afterwards.
+
+Without this step everything else works, but photo uploads fail with "Upload failed".
+
+### Optional: support email
+Add `NEXT_PUBLIC_SUPPORT_EMAIL` (e.g. `hello@yourdomain.com`) in Vercel → Settings → Environment Variables
+and redeploy. It shows a **Contact** button on the organizer dashboard and a report address on `/guidelines`.

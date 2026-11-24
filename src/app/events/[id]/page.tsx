@@ -2,12 +2,19 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import TopBar from '@/components/TopBar'
 import { CATEGORY_META } from '@/lib/categories'
-import { getEventById } from '@/lib/events'
+import { getCurrentUser } from '@/lib/auth'
+import { getEventById, hidePrivateVenue } from '@/lib/events'
 import { ageLabel, formatLongDate, formatPrice, formatTime, percentFull, spotsLeft } from '@/lib/format'
 
 export const dynamic = 'force-dynamic'
 
-export default async function EventDetailsPage({ params }: { params: { id: string } }) {
+export default async function EventDetailsPage({
+  params,
+  searchParams,
+}: {
+  params: { id: string }
+  searchParams: { created?: string; draft?: string }
+}) {
   const result = await getEventById(params.id)
 
   if (!result.ok) {
@@ -24,8 +31,12 @@ export default async function EventDetailsPage({ params }: { params: { id: strin
     )
   }
 
-  const event = result.data
-  if (!event) notFound()
+  if (!result.data) notFound()
+  const viewer = await getCurrentUser()
+  const isOwner = Boolean(viewer?.profile && viewer.profile.id === result.data.organizer_id)
+  // Organizers always see their own venue; others only if it's set to public.
+  const event = isOwner ? result.data : hidePrivateVenue(result.data)
+  const venueHidden = !event.show_exact_location && !isOwner
 
   const price = formatPrice(event)
   const isFree = price === 'Free'
@@ -35,8 +46,16 @@ export default async function EventDetailsPage({ params }: { params: { id: strin
 
   return (
     <>
-      <TopBar variant="back" title={event.title} />
+      <TopBar variant="back" title={event.title} shareable />
       <main className="pt-16 pb-32 max-w-lg mx-auto">
+        {isOwner && (searchParams.created || searchParams.draft) && (
+          <p role="status" className="m-margin p-3 rounded-xl bg-tertiary-fixed/50 text-on-tertiary-fixed font-inter text-body-md flex gap-2">
+            <span className="material-symbols-outlined text-[20px]">{searchParams.created ? 'celebration' : 'draft'}</span>
+            {searchParams.created
+              ? 'Your event is live! It now shows on the Home feed for its weekend.'
+              : 'Draft saved. Only you can see it – editing drafts arrives with the organizer dashboard update.'}
+          </p>
+        )}
         <div className="relative w-full h-64 bg-surface-container-high">
           {event.image_url ? (
             <Image src={event.image_url} alt={event.title} fill className="object-cover" unoptimized priority />
@@ -83,6 +102,12 @@ export default async function EventDetailsPage({ params }: { params: { id: strin
                   </p>
                 </div>
               </li>
+              {venueHidden && (
+                <li className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-primary">lock</span>
+                  <p className="font-inter text-label-md text-outline pt-0.5">The host shares the exact address with attendees.</p>
+                </li>
+              )}
               {(event.venue || event.area) && (
                 <li className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-primary">location_on</span>

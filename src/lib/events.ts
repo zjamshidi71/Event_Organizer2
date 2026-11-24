@@ -36,8 +36,15 @@ export async function getWeekendEvents(now = new Date()) {
   }
 
   const weekendDates = new Set(weekend.days.map((d) => d.isoDate))
-  const events = (data ?? []).filter((e) => weekendDates.has(londonDate(new Date(e.starts_at))))
+  const events = (data ?? [])
+    .filter((e) => weekendDates.has(londonDate(new Date(e.starts_at))))
+    .map(hidePrivateVenue)
   return { weekend, result: { ok: true, data: events } as LoadResult<EventRecord[]> }
+}
+
+/** Removes the exact venue from events whose organizer chose to only show the area. */
+export function hidePrivateVenue(event: EventRecord): EventRecord {
+  return event.show_exact_location ? event : { ...event, venue: null, latitude: null, longitude: null }
 }
 
 export async function getEventById(id: string): Promise<LoadResult<EventRecord | null>> {

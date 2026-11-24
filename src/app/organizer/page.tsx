@@ -1,12 +1,16 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import TopBar from '@/components/TopBar'
 
 const ORGANIZER_AVATAR = 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-FujW3rpu9_msyWYvOEDOqEFppCGRPIm1bE2g-lkz6BKr-gHobZyzjitrTxBOlaWk8GU1hREqEH1LDyjkzqQwpEfJTg3uEqBiIs-03tItSgDcVvE8MfhVWqfQz_tp_3WS1Mhfnh5ZcwtV48I14i7tc3wqvSJ0rEEMiYzSSronKUiWhPpHVN5eBTBQWObzwafJHGW8vV-r6dkY83H5j3tRRfIqTTvILwTZCqctljrr'
 const EVENT1_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBR9TQosdNSIUg_Deajys6zfnMMonX_yAIWHcOXKQHpAfhS1FfPPcIPQXswViQRahi_xhc3hdjFIWdz7X7hPghwKUZsATUvy3D258-78HIysdZdpQPgkalQaMG6o4IODn-TiCEXKHoDEYCVMYWFtsxCbTyJ_QRlxTauZE-oa2BeIjpah0AhPAZIH7FZExyrd6KE1Mv6nKltKDYoBQr4iM1Xs_Zdln7sKWidPuKoVQV2'
 const EVENT2_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBg9myeYJBlT5rnNwYZs0OoWEc6SkeiAk_rUYA44WqSeGP9QaEnf72MCP0NFSImnJ4YDet2gLujtXVTr2d_zT88xDDrfX2tJVmh4nKqVO6GyCdgPuDPVSQSe1ep0leC37I3G2r3LP5vGql4CIatf0SDM-fv8maF35EZi-FJiy8961QxqnogX38kvaJ3nMw5Wws2-6IUrZ1SI-gXjS0OsWzWlvgFYir7zlgNQU3idBWT'
+
+// Set NEXT_PUBLIC_SUPPORT_EMAIL in Vercel to show the "Contact" card.
+const SUPPORT_EMAIL = process.env.NEXT_PUBLIC_SUPPORT_EMAIL
 
 export default function OrganizerDashboard() {
   const router = useRouter()
@@ -16,6 +20,10 @@ export default function OrganizerDashboard() {
       <TopBar variant="back" title="Organizer Dashboard" />
 
       <main className="pt-16 pb-10 max-w-lg mx-auto px-margin space-y-6">
+        <p role="note" className="mt-6 p-3 rounded-xl bg-surface-container-high text-on-surface-variant font-inter text-label-md flex gap-2">
+          <span className="material-symbols-outlined text-primary text-[18px]">info</span>
+          Preview: the stats and events below are examples. Your real events and numbers will appear here soon.
+        </p>
 
         {/* ── 1. Organizer Profile Context ───────────────────────── */}
         <section className="pt-6 flex items-center justify-between gap-4">
@@ -42,10 +50,10 @@ export default function OrganizerDashboard() {
             </div>
           </div>
           {/* Youth View switch */}
-          <button className="flex-shrink-0 h-9 px-3 bg-primary-container/20 border border-primary/30 rounded-full flex items-center gap-1.5 text-primary hover:bg-primary-container/40 transition-colors">
+          <Link href="/home" className="flex-shrink-0 h-9 px-3 bg-primary-container/20 border border-primary/30 rounded-full flex items-center gap-1.5 text-primary hover:bg-primary-container/40 transition-colors">
             <span className="material-symbols-outlined text-[16px]">group</span>
             <span className="font-inter text-label-md font-semibold">Youth View</span>
-          </button>
+          </Link>
         </section>
 
         {/* ── 2. Create New Event Hero Banner ────────────────────── */}
@@ -185,13 +193,15 @@ export default function OrganizerDashboard() {
                 </div>
                 {/* Action buttons */}
                 <div className="flex gap-2 mt-3">
-                  <button className="flex-1 h-10 bg-primary text-on-primary rounded-xl font-inter text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-primary/90 transition-colors">
+                  <button type="button" disabled title="Coming soon" className="flex-1 h-10 bg-primary text-on-primary rounded-xl font-inter text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                     <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
                     Scan Tickets
+                    <span className="font-inter text-[10px] font-bold uppercase bg-surface-container-highest text-outline px-1.5 py-0.5 rounded-full">Soon</span>
                   </button>
-                  <button className="flex-1 h-10 bg-surface-container-high text-on-surface rounded-xl font-inter text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-colors">
+                  <button type="button" disabled title="Coming soon" className="flex-1 h-10 bg-surface-container-high text-on-surface rounded-xl font-inter text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                     <span className="material-symbols-outlined text-[18px]">campaign</span>
                     Broadcast
+                    <span className="font-inter text-[10px] font-bold uppercase bg-surface-container-highest text-outline px-1.5 py-0.5 rounded-full">Soon</span>
                   </button>
                 </div>
               </div>
@@ -217,9 +227,10 @@ export default function OrganizerDashboard() {
                 </div>
                 {/* Action button */}
                 <div className="flex gap-2 mt-3">
-                  <button className="flex-1 h-10 bg-surface-container-high text-on-surface rounded-xl font-inter text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-colors">
+                  <button type="button" disabled title="Coming soon" className="flex-1 h-10 bg-surface-container-high text-on-surface rounded-xl font-inter text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                     <span className="material-symbols-outlined text-[18px]">edit_calendar</span>
                     Manage Event
+                    <span className="font-inter text-[10px] font-bold uppercase bg-surface-container-highest text-outline px-1.5 py-0.5 rounded-full">Soon</span>
                   </button>
                 </div>
               </div>
@@ -234,7 +245,7 @@ export default function OrganizerDashboard() {
           <div className="bg-surface-container-low rounded-2xl divide-y divide-outline-variant">
 
             {/* Attendee List & Check-in */}
-            <button className="w-full flex items-center justify-between gap-3 px-4 py-4 hover:bg-surface-container transition-colors first:rounded-t-2xl">
+            <button type="button" disabled title="Coming soon" className="w-full flex items-center justify-between gap-3 px-4 py-4 hover:bg-surface-container transition-colors first:rounded-t-2xl disabled:cursor-not-allowed disabled:opacity-60">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center">
                   <span className="material-symbols-outlined text-primary text-[20px]">checklist</span>
@@ -244,11 +255,11 @@ export default function OrganizerDashboard() {
                   <p className="font-inter text-label-sm text-on-surface-variant">Manage entry &amp; scan QR codes</p>
                 </div>
               </div>
-              <span className="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+              <span className="font-inter text-[10px] font-bold uppercase bg-surface-container-highest text-outline px-1.5 py-0.5 rounded-full">Soon</span>
             </button>
 
             {/* Payouts & Banking */}
-            <button className="w-full flex items-center justify-between gap-3 px-4 py-4 hover:bg-surface-container transition-colors">
+            <button type="button" disabled title="Coming soon" className="w-full flex items-center justify-between gap-3 px-4 py-4 hover:bg-surface-container transition-colors disabled:cursor-not-allowed disabled:opacity-60">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-tertiary-container/20 flex items-center justify-center">
                   <span className="material-symbols-outlined text-tertiary-container text-[20px]">account_balance_wallet</span>
@@ -258,11 +269,11 @@ export default function OrganizerDashboard() {
                   <p className="font-inter text-label-sm text-on-surface-variant">View earnings &amp; payment history</p>
                 </div>
               </div>
-              <span className="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+              <span className="font-inter text-[10px] font-bold uppercase bg-surface-container-highest text-outline px-1.5 py-0.5 rounded-full">Soon</span>
             </button>
 
             {/* Community Safety Guidelines */}
-            <button className="w-full flex items-center justify-between gap-3 px-4 py-4 hover:bg-surface-container transition-colors last:rounded-b-2xl">
+            <Link href="/guidelines" className="w-full flex items-center justify-between gap-3 px-4 py-4 hover:bg-surface-container transition-colors last:rounded-b-2xl">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-secondary-container/20 flex items-center justify-center">
                   <span className="material-symbols-outlined text-secondary text-[20px]">shield</span>
@@ -273,24 +284,29 @@ export default function OrganizerDashboard() {
                 </div>
               </div>
               <span className="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
-            </button>
+            </Link>
 
           </div>
         </section>
 
         {/* ── 7. Host Support Card ────────────────────────────────── */}
-        <section className="bg-surface-container rounded-2xl p-5 flex items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="material-symbols-outlined text-primary text-[20px]">support_agent</span>
-              <h3 className="font-jakarta text-title-md text-on-surface tracking-tight">Need door support tonight?</h3>
+        {SUPPORT_EMAIL && (
+          <section className="bg-surface-container rounded-2xl p-5 flex items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+                <h3 className="font-jakarta text-title-md text-on-surface tracking-tight">Questions about hosting?</h3>
+              </div>
+              <p className="font-inter text-body-md text-on-surface-variant">Email the Weekendr team and we&apos;ll help.</p>
             </div>
-            <p className="font-inter text-body-md text-on-surface-variant">Our host team is on standby 24/7</p>
-          </div>
-          <button className="flex-shrink-0 h-10 px-4 bg-primary text-on-primary rounded-xl font-inter text-label-md font-semibold hover:bg-primary/90 transition-colors">
-            Contact
-          </button>
-        </section>
+            <a
+              href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Weekendr host support')}`}
+              className="flex-shrink-0 h-10 px-4 bg-primary text-on-primary rounded-xl font-inter text-label-md font-semibold hover:bg-primary/90 transition-colors flex items-center"
+            >
+              Contact
+            </a>
+          </section>
+        )}
 
       </main>
     </div>
